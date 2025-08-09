@@ -7,6 +7,7 @@ interface State {
   configs: {
     showGoogleStreetView: boolean;
     showRoads: boolean;
+    showIndigenousTerritories: boolean;
   };
   mapList: { provider: SupportedMapProvider; enabled: boolean }[];
 }
@@ -15,6 +16,7 @@ const initialState: State = {
   configs: {
     showGoogleStreetView: false,
     showRoads: false,
+    showIndigenousTerritories: false,
   },
   mapList: [
     {

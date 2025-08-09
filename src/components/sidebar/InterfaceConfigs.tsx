@@ -27,6 +27,14 @@ export const InterfaceConfigs = () => {
             dispatch(appActions.toggleConfig({ key: "showRoads" }))
           }
         />
+        <ConfigRow
+          title="Show Indigenous territories"
+          enabled={configs.showIndigenousTerritories}
+          lineThroughable={false}
+          onClick={() =>
+            dispatch(appActions.toggleConfig({ key: "showIndigenousTerritories" }))
+          }
+        />
       </div>
     </div>
   );

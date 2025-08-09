@@ -7,6 +7,26 @@
   height: 100%;
 }
 
+/* Indigenous Territory Tooltip Styling */
+.indigenous-territory-tooltip {
+  background-color: rgba(101, 67, 33, 0.95) !important;
+  color: white !important;
+  border: 1px solid #654321 !important;
+  border-radius: 4px !important;
+  padding: 6px 10px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  max-width: 250px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.indigenous-territory-tooltip::before {
+  border-top-color: #654321 !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

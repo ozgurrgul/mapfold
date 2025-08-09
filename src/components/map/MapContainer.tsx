@@ -5,6 +5,7 @@ import { MapRenderer } from "./MapRenderer";
 import { useSelector } from "react-redux";
 import { selectConfigs } from "@/store/appSelectors";
 import { DEFAULT_MAP_POSITION } from "@/store/appConstants";
+import { IndigenousTerritoriesOverlay } from "./IndigenousTerritoriesOverlay";
 
 interface Props extends React.PropsWithChildren {
   position?: MapPosition;
@@ -80,6 +81,7 @@ export const MapContainer: React.FC<Props> = ({
       {children}
       {configs.showGoogleStreetView && <MapRenderer provider="googleStreet" />}
       {configs.showRoads && <MapRenderer provider="googleRoads" />}
+      {configs.showIndigenousTerritories && <IndigenousTerritoriesOverlay />}
     </LeafletMapContainer>
   );
 };
