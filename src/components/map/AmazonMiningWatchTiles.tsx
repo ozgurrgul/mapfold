@@ -1,6 +1,6 @@
 import React from "react";
 import { TileLayer } from "react-leaflet";
-import { MiningOverlay } from "./MiningOverlay";
+import { AmazonMiningOverlay } from "./AmazonMiningOverlay";
 
 export const AmazonMiningWatchTiles: React.FC = () => {
   const generateUrl = () => {
@@ -24,7 +24,7 @@ export const AmazonMiningWatchTiles: React.FC = () => {
         tileSize={256}
         maxZoom={18}
       />
-      <MiningOverlay />
+      <AmazonMiningOverlay />
     </>
   );
 };

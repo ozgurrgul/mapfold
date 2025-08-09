@@ -5,7 +5,7 @@ import { FeatureCollection } from "geojson";
 const MINING_GEOJSON_URL =
   "https://raw.githubusercontent.com/earthrise-media/mining-detector/main/data/outputs/48px_v3.2-3.7ensemble/cumulative/amazon_basin_48px_v3.2-3.7ensemble_dissolved-0.6_2018-2024cumulative.geojson";
 
-export const MiningOverlay: React.FC = () => {
+export const AmazonMiningOverlay: React.FC = () => {
   const [geoJsonData, setGeoJsonData] = useState<FeatureCollection | null>(
     null
   );
