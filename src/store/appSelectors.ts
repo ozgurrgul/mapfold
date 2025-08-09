@@ -21,3 +21,8 @@ export const selectConfigs = createSelector(
   selectAppState,
   (state) => state.configs
 );
+
+export const selectEnabledProviders = createSelector(
+  selectEnabledMapList,
+  (enabledMaps) => enabledMaps.map(map => map.provider)
+);

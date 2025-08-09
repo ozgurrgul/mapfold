@@ -1,14 +1,11 @@
 import { MapPosition, SupportedMapProvider } from "@/types/map";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DEFAULT_MAP_POSITION } from "./appConstants";
+import { Configs } from "@/types/types";
 
 interface State {
   mapPosition?: MapPosition;
-  configs: {
-    showGoogleStreetView: boolean;
-    showRoads: boolean;
-    showIndigenousTerritories: boolean;
-  };
+  configs: Configs;
   mapList: { provider: SupportedMapProvider; enabled: boolean }[];
 }
 
@@ -59,20 +56,26 @@ const appSlice = createSlice({
     },
     toggleMapEnabled(
       state,
-      action: PayloadAction<{ provider: SupportedMapProvider }>
+      action: PayloadAction<{ provider: SupportedMapProvider; value?: boolean }>
     ) {
       const map = state.mapList.find(
         (m) => m.provider === action.payload.provider
       );
       if (map) {
-        map.enabled = !map.enabled;
+        map.enabled =
+          action.payload.value !== undefined
+            ? action.payload.value
+            : !map.enabled;
       }
     },
     toggleConfig(
       state,
-      action: PayloadAction<{ key: keyof State["configs"] }>
+      action: PayloadAction<{ key: keyof State["configs"]; value?: boolean }>
     ) {
-      state.configs[action.payload.key] = !state.configs[action.payload.key];
+      state.configs[action.payload.key] =
+        action.payload.value !== undefined
+          ? action.payload.value
+          : !state.configs[action.payload.key];
     },
   },
 });
