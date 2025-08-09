@@ -1,8 +1,9 @@
 import { MapPosition, SupportedMapProvider } from "@/types/map";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { DEFAULT_MAP_POSITION } from "./appConstants";
 
 interface State {
-  mapPosition: MapPosition;
+  mapPosition?: MapPosition;
   configs: {
     showGoogleStreetView: boolean;
     showRoads: boolean;
@@ -11,11 +12,6 @@ interface State {
 }
 
 const initialState: State = {
-  mapPosition: {
-    lat: 1.27475357,
-    lng: -70.8720782,
-    zoom: 13,
-  },
   configs: {
     showGoogleStreetView: false,
     showRoads: false,
@@ -48,10 +44,12 @@ const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
+    initializeFromURL() {},
     setMapPosition(state, action: PayloadAction<Partial<MapPosition>>) {
-      if (action.payload.lat) state.mapPosition.lat = action.payload.lat;
-      if (action.payload.lng) state.mapPosition.lng = action.payload.lng;
-      if (action.payload.zoom) state.mapPosition.zoom = action.payload.zoom;
+      state.mapPosition = {
+        ...(state.mapPosition || DEFAULT_MAP_POSITION),
+        ...action.payload,
+      };
     },
     toggleMapEnabled(
       state,

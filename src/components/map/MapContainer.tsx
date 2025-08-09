@@ -4,9 +4,10 @@ import { MapPosition } from "@/types/map";
 import { MapRenderer } from "./MapRenderer";
 import { useSelector } from "react-redux";
 import { selectConfigs } from "@/store/appSelectors";
+import { DEFAULT_MAP_POSITION } from "@/store/appConstants";
 
 interface Props extends React.PropsWithChildren {
-  position: MapPosition;
+  position?: MapPosition;
   onPositionChange: (position: MapPosition) => void;
 }
 
@@ -27,13 +28,15 @@ export const MapContainer: React.FC<Props> = ({
     const currentZoom = map.getZoom();
 
     if (
-      currentCenter.lat !== position.lat ||
-      currentCenter.lng !== position.lng ||
-      currentZoom !== position.zoom
+      currentCenter.lat !== position?.lat ||
+      currentCenter.lng !== position?.lng ||
+      currentZoom !== position?.zoom
     ) {
-      map.setView([position.lat, position.lng], position.zoom, {
-        animate: true,
-      });
+      if (position) {
+        map.setView([position.lat, position.lng], position.zoom, {
+          animate: true,
+        });
+      }
     }
   }, [mapReady, position]);
 
@@ -49,7 +52,7 @@ export const MapContainer: React.FC<Props> = ({
       onPositionChange({
         lat: center.lat,
         lng: center.lng,
-        zoom: zoom || position.zoom,
+        zoom: zoom || position?.zoom || DEFAULT_MAP_POSITION.zoom,
       });
     };
 
@@ -59,6 +62,8 @@ export const MapContainer: React.FC<Props> = ({
       map.off("moveend", handleMoveEnd);
     };
   }, [mapReady, onPositionChange, position]);
+
+  if (!position) return null;
 
   return (
     <LeafletMapContainer

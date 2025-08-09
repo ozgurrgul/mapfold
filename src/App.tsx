@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 import { MapPosition } from "./types/map";
 import { MapContainer } from "./components/map/MapContainer";
@@ -14,12 +14,17 @@ function App() {
   const position = useSelector(selectMapPosition);
   const mapList = useSelector(selectEnabledMapList);
 
+  // Initialize position from URL on app load
+  useEffect(() => {
+    dispatch(appActions.initializeFromURL());
+  }, [dispatch]);
+
   const handlePositionChange = useCallback(
     (newPosition: MapPosition) => {
       if (
-        newPosition.lat !== position.lat ||
-        newPosition.lng !== position.lng ||
-        newPosition.zoom !== position.zoom
+        newPosition.lat !== position?.lat ||
+        newPosition.lng !== position?.lng ||
+        newPosition.zoom !== position?.zoom
       ) {
         dispatch(appActions.setMapPosition(newPosition));
       }
