@@ -11,4 +11,5 @@ export type SupportedMapProvider =
   | "googleStreet"
   | "yandexSat"
   | "bingSat"
-  | "esriSat";
+  | "esriSat"
+  | "amazonMiningWatch";

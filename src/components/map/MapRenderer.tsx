@@ -2,6 +2,7 @@ import { SupportedMapProvider } from "@/types/map";
 import { TileLayer } from "react-leaflet";
 import { BingMap } from "./BingMap";
 import { GoogleStreetView } from "./StreetView";
+import { AmazonMiningWatchTiles } from "./AmazonMiningWatchTiles";
 
 const maps: Record<SupportedMapProvider, React.ReactNode> = {
   googleSat: (
@@ -40,6 +41,7 @@ const maps: Record<SupportedMapProvider, React.ReactNode> = {
       attribution="ESRI"
     />
   ),
+  amazonMiningWatch: <AmazonMiningWatchTiles />,
 };
 
 export const MapRenderer: React.FC<{ provider: SupportedMapProvider }> = ({

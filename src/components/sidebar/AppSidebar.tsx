@@ -1,16 +1,6 @@
 import * as React from "react";
-import { ArchiveX, Command, File, Inbox, Send, Trash2 } from "lucide-react";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
-} from "@/components/ui/sidebar";
+import { ArchiveX, File, Inbox, Send, Trash2 } from "lucide-react";
+import { Sidebar, SidebarHeader, useSidebar } from "@/components/ui/sidebar";
 import { PositionInput } from "./PositionInput";
 import { MapList } from "./MapList";
 import { InterfaceConfigs } from "./InterfaceConfigs";

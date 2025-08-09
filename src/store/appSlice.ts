@@ -37,6 +37,10 @@ const initialState: State = {
       provider: "yandexSat",
       enabled: false,
     },
+    {
+      provider: "amazonMiningWatch",
+      enabled: false,
+    },
   ],
 };
 
