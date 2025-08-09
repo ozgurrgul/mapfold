@@ -27,11 +27,11 @@ const initialState: State = {
     },
     {
       provider: "googleTerrain",
-      enabled: true,
+      enabled: false,
     },
     {
       provider: "bingSat",
-      enabled: false,
+      enabled: true,
     },
     {
       provider: "esriSat",
