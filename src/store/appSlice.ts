@@ -40,6 +40,10 @@ const initialState: State = {
       provider: "topography",
       enabled: false,
     },
+    {
+      provider: "airports",
+      enabled: false,
+    },
     // {
     //   provider: "amazonMiningWatch",
     //   enabled: false,

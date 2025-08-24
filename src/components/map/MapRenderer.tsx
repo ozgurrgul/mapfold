@@ -48,6 +48,12 @@ const maps: Record<SupportedMapProvider, React.ReactNode> = {
       attribution="OpenTopoMap"
     />
   ),
+  airports: (
+    <TileLayer
+      url="https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png"
+      attribution={`Map <a href="https://memomaps.de/">memomaps.de</a> <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors`}
+    />
+  ),
 };
 
 export const MapRenderer: React.FC<{ provider: SupportedMapProvider }> = ({

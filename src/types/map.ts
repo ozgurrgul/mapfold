@@ -13,4 +13,5 @@ export type SupportedMapProvider =
   | "bingSat"
   | "esriSat"
   | "amazonMiningWatch"
-  | "topography";
+  | "topography"
+  | "airports";
