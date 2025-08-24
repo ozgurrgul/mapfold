@@ -14,6 +14,7 @@ const initialState: State = {
     showGoogleStreetView: false,
     showRoads: false,
     showIndigenousTerritories: false,
+    showRailways: false,
   },
   mapList: [
     {

@@ -81,6 +81,7 @@ export const MapContainer: React.FC<Props> = ({
       {children}
       {configs.showGoogleStreetView && <MapRenderer provider="googleStreet" />}
       {configs.showRoads && <MapRenderer provider="googleRoads" />}
+      {configs.showRailways && <MapRenderer provider="railways" />}
       {configs.showIndigenousTerritories && <IndigenousTerritoriesOverlay />}
     </LeafletMapContainer>
   );

@@ -4,6 +4,7 @@ export interface Configs {
   showGoogleStreetView: boolean;
   showRoads: boolean;
   showIndigenousTerritories: boolean;
+  showRailways: boolean;
 }
 
 export interface URLParams {

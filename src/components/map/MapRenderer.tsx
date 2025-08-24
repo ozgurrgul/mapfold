@@ -54,6 +54,12 @@ const maps: Record<SupportedMapProvider, React.ReactNode> = {
       attribution={`Map <a href="https://memomaps.de/">memomaps.de</a> <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors`}
     />
   ),
+  railways: (
+    <TileLayer
+      url="https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png"
+      attribution={`Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href="https://www.OpenRailwayMap.org">OpenRailwayMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)`}
+    />
+  ),
 };
 
 export const MapRenderer: React.FC<{ provider: SupportedMapProvider }> = ({
