@@ -42,6 +42,12 @@ const maps: Record<SupportedMapProvider, React.ReactNode> = {
     />
   ),
   amazonMiningWatch: <AmazonMiningWatchTiles />,
+  topography: (
+    <TileLayer
+      url="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png"
+      attribution="OpenTopoMap"
+    />
+  ),
 };
 
 export const MapRenderer: React.FC<{ provider: SupportedMapProvider }> = ({
