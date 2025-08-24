@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { GeoJSON } from "react-leaflet";
 import { FeatureCollection, Feature } from "geojson";
 
-const NATIVE_LAND_API =
-  "https://native-land.ca/api/index.php?key=TKKHyMfNTRngqPn0jfQyX";
+// Territories are from Native Land Digital but persisted in the `indigenous-territories.geojson` for faster access
+// const NATIVE_LAND_API = "https://native-land.ca/api/index.php?key=TKKHyMfNTRngqPn0jfQyX";
 
 interface TerritoryProperties {
   Name: string;
@@ -37,22 +37,17 @@ export const IndigenousTerritoriesOverlay: React.FC = () => {
 
     const fetchAllTerritories = async () => {
       try {
-        const response = await fetch(`${NATIVE_LAND_API}&maps=territories`);
+        const response = await fetch(`/indigenous-territories.geojson`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json();
+        const data: FeatureCollection = await response.json();
 
         if (data) {
-          const featureCollection: FeatureCollection = {
-            type: "FeatureCollection",
-            features: data.features,
-          };
-
-          globalTerritoriesCache = featureCollection;
-          setTerritoriesData(featureCollection);
+          globalTerritoriesCache = data;
+          setTerritoriesData(data);
         }
       } catch (err: any) {
         setError(err.message);
