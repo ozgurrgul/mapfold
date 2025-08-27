@@ -31,7 +31,7 @@ export const MapList = () => {
         {mapList.map((m) => (
           <ConfigRow
             key={m.provider}
-            title={m.provider}
+            title={m.providerName}
             enabled={m.enabled}
             lineThroughable
             onClick={() => onToggleMapEnabled(m.provider)}

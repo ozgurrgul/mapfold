@@ -6,7 +6,7 @@ import { Configs } from "@/types/types";
 interface State {
   mapPosition?: MapPosition;
   configs: Configs;
-  mapList: { provider: SupportedMapProvider; enabled: boolean }[];
+  mapList: { provider: SupportedMapProvider; enabled: boolean; providerName: string; }[];
 }
 
 const initialState: State = {
@@ -21,30 +21,37 @@ const initialState: State = {
     {
       provider: "googleSat",
       enabled: true,
+      providerName: "Google Satellite",
     },
     {
       provider: "googleTerrain",
       enabled: false,
+      providerName: "Google Terrain",
     },
     {
       provider: "bingSat",
       enabled: true,
+      providerName: "Bing Satellite",
     },
     {
       provider: "esriSat",
       enabled: false,
+      providerName: "ESRI Satellite",
     },
     {
       provider: "yandexSat",
       enabled: false,
+      providerName: "Yandex Satellite",
     },
     {
       provider: "topography",
       enabled: false,
+      providerName: "Topography",
     },
     {
       provider: "airports",
       enabled: false,
+      providerName: "Airports",
     },
     // {
     //   provider: "amazonMiningWatch",
