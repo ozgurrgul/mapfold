@@ -5,6 +5,7 @@ export interface Configs {
   showRoads: boolean;
   showIndigenousTerritories: boolean;
   showRailways: boolean;
+  showMeasureControl: boolean;
 }
 
 export interface URLParams {

@@ -45,6 +45,14 @@ export const InterfaceConfigs = () => {
             dispatch(appActions.toggleConfig({ key: "showRailways" }))
           }
         />
+        <ConfigRow
+          title="Show measure control"
+          enabled={configs.showMeasureControl}
+          lineThroughable={false}
+          onClick={() =>
+            dispatch(appActions.toggleConfig({ key: "showMeasureControl" }))
+          }
+        />
       </div>
     </div>
   );

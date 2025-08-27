@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { selectConfigs } from "@/store/appSelectors";
 import { DEFAULT_MAP_POSITION } from "@/store/appConstants";
 import { IndigenousTerritoriesOverlay } from "./IndigenousTerritoriesOverlay";
+import { MeasureControl } from "./MeasureControl";
 
 interface Props extends React.PropsWithChildren {
   position?: MapPosition;
@@ -83,6 +84,7 @@ export const MapContainer: React.FC<Props> = ({
       {configs.showRoads && <MapRenderer provider="googleRoads" />}
       {configs.showRailways && <MapRenderer provider="railways" />}
       {configs.showIndigenousTerritories && <IndigenousTerritoriesOverlay />}
+      {configs.showMeasureControl && <MeasureControl />}
     </LeafletMapContainer>
   );
 };

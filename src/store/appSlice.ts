@@ -15,6 +15,7 @@ const initialState: State = {
     showRoads: false,
     showIndigenousTerritories: false,
     showRailways: false,
+    showMeasureControl: false,
   },
   mapList: [
     {
