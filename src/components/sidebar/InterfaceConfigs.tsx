@@ -2,33 +2,42 @@ import { selectConfigs } from "@/store/appSelectors";
 import { appActions } from "@/store/appSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ConfigRow } from "./ConfigRow";
+import {
+  BusFront,
+  PersonStanding,
+  RulerIcon,
+  TentIcon,
+  TrainIcon,
+} from "lucide-react";
 
 export const InterfaceConfigs = () => {
   const dispatch = useDispatch();
   const configs = useSelector(selectConfigs);
 
   return (
-    <div className="p-4">
-      <div className="font-medium">Configs</div>
-      <div className="mt-2">
+    <div>
+      <div>Configs</div>
+      <div className="mt-2 rounded-md overflow-hidden border border-gray-100">
         <ConfigRow
-          title="Show Google Street View"
+          title="Google Street View"
           enabled={configs.showGoogleStreetView}
           lineThroughable={false}
           onClick={() =>
             dispatch(appActions.toggleConfig({ key: "showGoogleStreetView" }))
           }
+          icon={<PersonStanding className="w-4 h-4" />}
         />
         <ConfigRow
-          title="Show roads"
+          title="Roads"
           enabled={configs.showRoads}
           lineThroughable={false}
           onClick={() =>
             dispatch(appActions.toggleConfig({ key: "showRoads" }))
           }
+          icon={<BusFront className="w-4 h-4" />}
         />
         <ConfigRow
-          title="Show Indigenous territories"
+          title="Indigenous territories"
           enabled={configs.showIndigenousTerritories}
           lineThroughable={false}
           onClick={() =>
@@ -36,22 +45,25 @@ export const InterfaceConfigs = () => {
               appActions.toggleConfig({ key: "showIndigenousTerritories" })
             )
           }
+          icon={<TentIcon className="w-4 h-4" />}
         />
         <ConfigRow
-          title="Show railways"
+          title="Railways"
           enabled={configs.showRailways}
           lineThroughable={false}
           onClick={() =>
             dispatch(appActions.toggleConfig({ key: "showRailways" }))
           }
+          icon={<TrainIcon className="w-4 h-4" />}
         />
         <ConfigRow
-          title="Show measure control"
+          title="Measure control"
           enabled={configs.showMeasureControl}
           lineThroughable={false}
           onClick={() =>
             dispatch(appActions.toggleConfig({ key: "showMeasureControl" }))
           }
+          icon={<RulerIcon className="w-4 h-4" />}
         />
       </div>
     </div>

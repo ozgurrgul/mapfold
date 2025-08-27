@@ -7,17 +7,25 @@ export const ConfigRow: React.FC<{
   enabled: boolean;
   onClick: () => void;
   lineThroughable: boolean;
-}> = ({ title, enabled, lineThroughable, onClick }) => {
+  icon?: React.ReactNode;
+}> = ({ title, enabled, lineThroughable, onClick, icon }) => {
   return (
-    <li className="flex items-center mb-1">
+    <li
+      className={cn(
+        "flex items-center hover:bg-gray-100/2 cursor-pointer p-1",
+        !enabled ? "bg-gray-100" : ""
+      )}
+      onClick={onClick}
+    >
       <div
-        className={cn("w-full font-light text-sm", {
+        className={cn("w-full font-light text-sm flex items-center gap-2", {
           "line-through": lineThroughable && !enabled,
         })}
       >
+        {icon}
         {title}
       </div>
-      <span className="cursor-pointer ml-2" onClick={onClick}>
+      <span className="cursor-pointer ml-2">
         {enabled ? (
           <EyeIcon className="w-4 h-4" />
         ) : (

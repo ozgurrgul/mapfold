@@ -3,6 +3,7 @@ import { appActions } from "@/store/appSlice";
 import { SupportedMapProvider } from "@/types/map";
 import { useDispatch, useSelector } from "react-redux";
 import { ConfigRow } from "./ConfigRow";
+import { MapIcon } from "lucide-react";
 
 export const MapList = () => {
   const dispatch = useDispatch();
@@ -24,9 +25,9 @@ export const MapList = () => {
   };
 
   return (
-    <div className="p-4">
-      <div className="font-medium">Maps</div>
-      <div className="mt-2">
+    <div>
+      <div>Maps</div>
+      <div className="mt-2 rounded-md overflow-hidden border border-gray-100">
         {mapList.map((m) => (
           <ConfigRow
             key={m.provider}
@@ -34,6 +35,7 @@ export const MapList = () => {
             enabled={m.enabled}
             lineThroughable
             onClick={() => onToggleMapEnabled(m.provider)}
+            icon={<MapIcon className="w-4 h-4" />}
           />
         ))}
       </div>

@@ -16,7 +16,7 @@ export const MapsGrid: React.FC<React.PropsWithChildren> = ({ children }) => {
         };
 
   return (
-    <div className={`h-screen w-screen grid gap-1 p-1`} style={gridStyles}>
+    <div className={`h-screen w-full grid gap-1 p-1`} style={gridStyles}>
       {children}
     </div>
   );

@@ -1,9 +1,8 @@
 import { selectMapPosition } from "@/store/appSelectors";
 import { useDispatch, useSelector } from "react-redux";
-import { SidebarInput } from "../ui/sidebar";
+import { Input } from "../ui/input";
 import { MapPosition } from "@/types/map";
 import { appActions } from "@/store/appSlice";
-import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import { useState, useEffect } from "react";
 
@@ -37,10 +36,10 @@ export const PositionInput = () => {
   };
 
   return (
-    <>
-      <Label htmlFor="coordinates">GPS coordinates</Label>
-      <div className="flex gap-2">
-        <SidebarInput
+    <div>
+      <div>GPS coordinates</div>
+      <div className="flex gap-2 mt-2">
+        <Input
           id="coordinates"
           placeholder="lat,lng"
           value={inputValue}
@@ -50,6 +49,6 @@ export const PositionInput = () => {
           Apply
         </Button>
       </div>
-    </>
+    </div>
   );
 };
