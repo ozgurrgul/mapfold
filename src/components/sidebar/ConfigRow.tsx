@@ -13,7 +13,7 @@ export const ConfigRow: React.FC<{
     <li
       className={cn(
         "flex items-center hover:bg-gray-100/2 cursor-pointer p-1",
-        !enabled ? "bg-gray-100" : ""
+        enabled ? "bg-green-100/75" : "bg-gray-100"
       )}
       onClick={onClick}
     >
