@@ -14,5 +14,5 @@ export const GoogleStreetView = () => {
     };
   }, []);
 
-  return <TileLayer url={URL} attribution="Google Street View" />;
+  return <TileLayer url={URL} attribution="Google Street View" maxZoom={50} />;
 };

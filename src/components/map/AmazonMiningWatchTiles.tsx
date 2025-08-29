@@ -22,7 +22,7 @@ export const AmazonMiningWatchTiles: React.FC = () => {
         subdomains={["a", "b", "c"]}
         attribution={attribution}
         tileSize={256}
-        maxZoom={18}
+        maxZoom={50}
       />
       <AmazonMiningOverlay />
     </>

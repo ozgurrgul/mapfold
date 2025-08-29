@@ -13,6 +13,7 @@ const CustomTileLayer = createLayerComponent(
       subdomains: ["0", "1", "2", "3", "4", "5", "6", "7"],
       tms: true,
       attribution: "Bing",
+      maxZoom: 50,
     });
 
     // Override the getTileUrl function
