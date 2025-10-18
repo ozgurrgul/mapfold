@@ -8,6 +8,7 @@ import {
   RulerIcon,
   TentIcon,
   TrainIcon,
+  Info,
 } from "lucide-react";
 
 export const InterfaceConfigs = () => {
@@ -64,6 +65,15 @@ export const InterfaceConfigs = () => {
             dispatch(appActions.toggleConfig({ key: "showMeasureControl" }))
           }
           icon={<RulerIcon className="w-4 h-4" />}
+        />
+        <ConfigRow
+          title="Weather Info"
+          enabled={configs.showWeatherInfo}
+          lineThroughable={false}
+          onClick={() =>
+            dispatch(appActions.toggleConfig({ key: "showWeatherInfo" }))
+          }
+          icon={<Info className="w-4 h-4" />}
         />
       </div>
     </div>

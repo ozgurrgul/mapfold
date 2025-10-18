@@ -9,10 +9,12 @@ import {
   selectEnabledMapList,
   selectMapPosition,
   selectFullscreenProvider,
+  selectConfigs,
 } from "./store/appSelectors";
 import { MapRenderer } from "./components/map/MapRenderer";
 import { AppSidebar } from "./components/sidebar/AppSidebar";
 import { FullscreenToggle } from "./components/ui/fullscreen-toggle";
+import { WeatherInfo } from "./components/weather/WeatherInfo";
 import { useKeyboardShortcuts } from "./hooks/use-keyboard-shortcuts";
 import { MenuIcon, XIcon } from "lucide-react";
 
@@ -21,6 +23,7 @@ function App() {
   const position = useSelector(selectMapPosition);
   const mapList = useSelector(selectEnabledMapList);
   const fullscreenProvider = useSelector(selectFullscreenProvider);
+  const configs = useSelector(selectConfigs);
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   // Initialize position from URL on app load
@@ -101,6 +104,12 @@ function App() {
                     dispatch(appActions.toggleFullscreen(m.provider))
                   }
                 />
+                {configs.showWeatherInfo && (
+                  <WeatherInfo 
+                    position={position} 
+                    className="absolute top-24 left-4 max-w-[200px]"
+                  />
+                )}
               </div>
             );
           })}

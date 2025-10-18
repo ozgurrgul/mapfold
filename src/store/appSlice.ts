@@ -17,6 +17,7 @@ const initialState: State = {
     showIndigenousTerritories: false,
     showRailways: false,
     showMeasureControl: false,
+    showWeatherInfo: false,
   },
   fullscreenProvider: undefined,
   mapList: [
