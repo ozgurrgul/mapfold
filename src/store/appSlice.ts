@@ -7,6 +7,7 @@ interface State {
   mapPosition?: MapPosition;
   configs: Configs;
   mapList: { provider: SupportedMapProvider; enabled: boolean; providerName: string; }[];
+  fullscreenProvider?: SupportedMapProvider;
 }
 
 const initialState: State = {
@@ -17,6 +18,7 @@ const initialState: State = {
     showRailways: false,
     showMeasureControl: false,
   },
+  fullscreenProvider: undefined,
   mapList: [
     {
       provider: "googleSat",
@@ -93,6 +95,21 @@ const appSlice = createSlice({
         action.payload.value !== undefined
           ? action.payload.value
           : !state.configs[action.payload.key];
+    },
+    setFullscreenProvider(
+      state,
+      action: PayloadAction<SupportedMapProvider | undefined>
+    ) {
+      state.fullscreenProvider = action.payload;
+    },
+    toggleFullscreen(
+      state,
+      action: PayloadAction<SupportedMapProvider>
+    ) {
+      state.fullscreenProvider = 
+        state.fullscreenProvider === action.payload 
+          ? undefined 
+          : action.payload;
     },
   },
 });

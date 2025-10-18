@@ -26,3 +26,8 @@ export const selectEnabledProviders = createSelector(
   selectEnabledMapList,
   (enabledMaps) => enabledMaps.map(map => map.provider)
 );
+
+export const selectFullscreenProvider = createSelector(
+  selectAppState,
+  (state) => state.fullscreenProvider
+);

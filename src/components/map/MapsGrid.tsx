@@ -1,8 +1,18 @@
-import { selectEnabledMapList } from "@/store/appSelectors";
+import { selectEnabledMapList, selectFullscreenProvider } from "@/store/appSelectors";
 import { useSelector } from "react-redux";
 
 export const MapsGrid: React.FC<React.PropsWithChildren> = ({ children }) => {
   const mapList = useSelector(selectEnabledMapList);
+  const fullscreenProvider = useSelector(selectFullscreenProvider);
+
+  // If in fullscreen mode, show only the fullscreen map
+  if (fullscreenProvider) {
+    return (
+      <div className="h-screen w-full">
+        {children}
+      </div>
+    );
+  }
 
   // default square grid size
   const gridSize = Math.ceil(Math.sqrt(mapList.length));
