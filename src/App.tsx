@@ -74,7 +74,15 @@ function App() {
               )}
             </button>
           </div>
-          {sidebarOpen && <AppSidebar />}
+          <div 
+            className={`transition-all duration-300 ease-out origin-top-right ${
+              sidebarOpen 
+                ? 'transform scale-100 opacity-100' 
+                : 'transform scale-0 opacity-0 pointer-events-none'
+            }`}
+          >
+            <AppSidebar />
+          </div>
         </div>
       )}
       <MapsGrid>
