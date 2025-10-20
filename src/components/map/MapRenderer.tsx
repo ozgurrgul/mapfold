@@ -3,6 +3,7 @@ import { TileLayer } from "react-leaflet";
 import { BingMap } from "./BingMap";
 import { GoogleStreetView } from "./StreetView";
 import { AmazonMiningWatchTiles } from "./AmazonMiningWatchTiles";
+import { EsriWaybackMap } from "./EsriWaybackMap";
 
 const maps: Record<SupportedMapProvider, React.ReactNode> = {
   googleSat: (
@@ -46,6 +47,7 @@ const maps: Record<SupportedMapProvider, React.ReactNode> = {
       maxZoom={50}
     />
   ),
+  esriSatTimeline: <EsriWaybackMap />,
   amazonMiningWatch: <AmazonMiningWatchTiles />,
   topography: (
     <TileLayer

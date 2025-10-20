@@ -61,7 +61,7 @@ function App() {
   return (
     <div className="relative">
       {canShowSidebarIcon && (
-        <div className="absolute top-4 right-4 z-[9999] w-[250px] h-screen">
+        <div className="absolute top-4 right-4 z-[9999] w-[250px]">
           <div className="flex justify-end">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}

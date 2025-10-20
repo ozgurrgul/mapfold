@@ -1,13 +1,18 @@
 import { MapPosition, SupportedMapProvider } from "@/types/map";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DEFAULT_MAP_POSITION } from "./appConstants";
-import { Configs } from "@/types/types";
+import { Configs, WaybackDate } from "@/types/types";
 
 interface State {
   mapPosition?: MapPosition;
   configs: Configs;
-  mapList: { provider: SupportedMapProvider; enabled: boolean; providerName: string; }[];
+  mapList: {
+    provider: SupportedMapProvider;
+    enabled: boolean;
+    providerName: string;
+  }[];
   fullscreenProvider?: SupportedMapProvider;
+  selectedEsriSatTimelineDate?: WaybackDate;
 }
 
 const initialState: State = {
@@ -20,6 +25,7 @@ const initialState: State = {
     showWeatherInfo: false,
   },
   fullscreenProvider: undefined,
+  selectedEsriSatTimelineDate: undefined,
   mapList: [
     {
       provider: "googleSat",
@@ -40,6 +46,11 @@ const initialState: State = {
       provider: "esriSat",
       enabled: false,
       providerName: "ESRI Satellite",
+    },
+    {
+      provider: "esriSatTimeline",
+      enabled: false,
+      providerName: "ESRI Timeline",
     },
     {
       provider: "yandexSat",
@@ -103,14 +114,14 @@ const appSlice = createSlice({
     ) {
       state.fullscreenProvider = action.payload;
     },
-    toggleFullscreen(
-      state,
-      action: PayloadAction<SupportedMapProvider>
-    ) {
-      state.fullscreenProvider = 
-        state.fullscreenProvider === action.payload 
-          ? undefined 
+    toggleFullscreen(state, action: PayloadAction<SupportedMapProvider>) {
+      state.fullscreenProvider =
+        state.fullscreenProvider === action.payload
+          ? undefined
           : action.payload;
+    },
+    setEsriSatTimelineDate(state, action: PayloadAction<WaybackDate | undefined>) {
+      state.selectedEsriSatTimelineDate = action.payload;
     },
   },
 });

@@ -1,11 +1,12 @@
 import { MapPosition, SupportedMapProvider } from "@/types/map";
-import { Configs, URLParams } from "@/types/types";
+import { Configs, URLParams, WaybackDate } from "@/types/types";
 
 export const parseURLParams = (): URLParams => {
   const params = new URLSearchParams(window.location.search);
   const mapPositionParam = params.get("mapPosition");
   const configsParam = params.get("configs");
   const enabledProvidersParam = params.get("enabledProviders");
+  const esriSatTimelineDateParam = params.get("esriSatTimelineDate");
 
   const result: URLParams = {};
 
@@ -43,13 +44,28 @@ export const parseURLParams = (): URLParams => {
     }
   }
 
+  // Parse historical date from JSON
+  if (esriSatTimelineDateParam) {
+    try {
+      const esriSatTimelineDate = JSON.parse(
+        decodeURIComponent(esriSatTimelineDateParam)
+      );
+      if (esriSatTimelineDate && typeof esriSatTimelineDate === "object") {
+        result.esriSatTimelineDate = esriSatTimelineDate;
+      }
+    } catch (error) {
+      console.warn("Failed to parse historicalDate from URL:", error);
+    }
+  }
+
   return result;
 };
 
 export const updateURL = (
   position: MapPosition,
   configs?: Configs,
-  enabledProviders?: SupportedMapProvider[]
+  enabledProviders?: SupportedMapProvider[],
+  selectedEsriSatTimelineDate?: WaybackDate
 ) => {
   const params = new URLSearchParams();
 
@@ -64,6 +80,14 @@ export const updateURL = (
   // Add enabled providers as comma-separated list
   if (enabledProviders && enabledProviders.length > 0) {
     params.set("enabledProviders", enabledProviders.join(","));
+  }
+
+  // Add historical date as JSON if provided
+  if (selectedEsriSatTimelineDate) {
+    params.set(
+      "esriSatTimelineDate",
+      encodeURIComponent(JSON.stringify(selectedEsriSatTimelineDate))
+    );
   }
 
   const newURL = `${window.location.pathname}?${params.toString()}`;

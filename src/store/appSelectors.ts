@@ -31,3 +31,8 @@ export const selectFullscreenProvider = createSelector(
   selectAppState,
   (state) => state.fullscreenProvider
 );
+
+export const selectSelectedEsriSatTimelineDate = createSelector(
+  selectAppState,
+  (state) => state.selectedEsriSatTimelineDate
+);
