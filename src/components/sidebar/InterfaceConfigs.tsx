@@ -4,78 +4,125 @@ import { useDispatch, useSelector } from "react-redux";
 import { ConfigRow } from "./ConfigRow";
 import {
   BusFront,
-  PersonStanding,
+  Navigation,
   RulerIcon,
   TentIcon,
   TrainIcon,
-  Info,
+  CloudSun,
+  Layers,
+  Wrench,
 } from "lucide-react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 export const InterfaceConfigs = () => {
   const dispatch = useDispatch();
   const configs = useSelector(selectConfigs);
+  const [overlaysOpen, setOverlaysOpen] = useState(true);
+  const [toolsOpen, setToolsOpen] = useState(true);
 
   return (
-    <div>
-      <div>Configs</div>
-      <div className="mt-2 rounded-md overflow-hidden border border-gray-100">
-        <ConfigRow
-          title="Google Street View"
-          enabled={configs.showGoogleStreetView}
-          lineThroughable={false}
-          onClick={() =>
-            dispatch(appActions.toggleConfig({ key: "showGoogleStreetView" }))
-          }
-          icon={<PersonStanding className="w-4 h-4" />}
-        />
-        <ConfigRow
-          title="Roads"
-          enabled={configs.showRoads}
-          lineThroughable={false}
-          onClick={() =>
-            dispatch(appActions.toggleConfig({ key: "showRoads" }))
-          }
-          icon={<BusFront className="w-4 h-4" />}
-        />
-        <ConfigRow
-          title="Indigenous territories"
-          enabled={configs.showIndigenousTerritories}
-          lineThroughable={false}
-          onClick={() =>
-            dispatch(
-              appActions.toggleConfig({ key: "showIndigenousTerritories" })
-            )
-          }
-          icon={<TentIcon className="w-4 h-4" />}
-        />
-        <ConfigRow
-          title="Railways"
-          enabled={configs.showRailways}
-          lineThroughable={false}
-          onClick={() =>
-            dispatch(appActions.toggleConfig({ key: "showRailways" }))
-          }
-          icon={<TrainIcon className="w-4 h-4" />}
-        />
-        <ConfigRow
-          title="Measure control"
-          enabled={configs.showMeasureControl}
-          lineThroughable={false}
-          onClick={() =>
-            dispatch(appActions.toggleConfig({ key: "showMeasureControl" }))
-          }
-          icon={<RulerIcon className="w-4 h-4" />}
-        />
-        <ConfigRow
-          title="Weather Info"
-          enabled={configs.showWeatherInfo}
-          lineThroughable={false}
-          onClick={() =>
-            dispatch(appActions.toggleConfig({ key: "showWeatherInfo" }))
-          }
-          icon={<Info className="w-4 h-4" />}
-        />
-      </div>
+    <div className="space-y-3">
+      {/* Map Overlays Section */}
+      <Collapsible open={overlaysOpen} onOpenChange={setOverlaysOpen}>
+        <CollapsibleTrigger className="flex items-center justify-between w-full text-sm font-semibold hover:text-primary transition-colors group">
+          <div className="flex items-center gap-2">
+            <Layers className="w-4 h-4" />
+            <span>Map Overlays</span>
+          </div>
+          <ChevronDown
+            className={`w-4 h-4 transition-transform ${
+              overlaysOpen ? "rotate-180" : ""
+            }`}
+          />
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <div className="mt-2 rounded-md overflow-hidden border">
+            <ConfigRow
+              title="Roads"
+              enabled={configs.showRoads}
+              lineThroughable={false}
+              onClick={() =>
+                dispatch(appActions.toggleConfig({ key: "showRoads" }))
+              }
+              icon={<BusFront className="w-4 h-4" />}
+            />
+            <ConfigRow
+              title="Railways"
+              enabled={configs.showRailways}
+              lineThroughable={false}
+              onClick={() =>
+                dispatch(appActions.toggleConfig({ key: "showRailways" }))
+              }
+              icon={<TrainIcon className="w-4 h-4" />}
+            />
+            <ConfigRow
+              title="Indigenous Territories"
+              enabled={configs.showIndigenousTerritories}
+              lineThroughable={false}
+              onClick={() =>
+                dispatch(
+                  appActions.toggleConfig({ key: "showIndigenousTerritories" })
+                )
+              }
+              icon={<TentIcon className="w-4 h-4" />}
+            />
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
+
+      {/* Tools Section */}
+      <Collapsible open={toolsOpen} onOpenChange={setToolsOpen}>
+        <CollapsibleTrigger className="flex items-center justify-between w-full text-sm font-semibold hover:text-primary transition-colors group">
+          <div className="flex items-center gap-2">
+            <Wrench className="w-4 h-4" />
+            <span>Tools & Features</span>
+          </div>
+          <ChevronDown
+            className={`w-4 h-4 transition-transform ${
+              toolsOpen ? "rotate-180" : ""
+            }`}
+          />
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <div className="mt-2 rounded-md overflow-hidden border">
+            <ConfigRow
+              title="Street View"
+              enabled={configs.showGoogleStreetView}
+              lineThroughable={false}
+              onClick={() =>
+                dispatch(
+                  appActions.toggleConfig({ key: "showGoogleStreetView" })
+                )
+              }
+              icon={<Navigation className="w-4 h-4" />}
+            />
+            <ConfigRow
+              title="Measure Tool"
+              enabled={configs.showMeasureControl}
+              lineThroughable={false}
+              onClick={() =>
+                dispatch(appActions.toggleConfig({ key: "showMeasureControl" }))
+              }
+              icon={<RulerIcon className="w-4 h-4" />}
+            />
+            <ConfigRow
+              title="Weather Info"
+              enabled={configs.showWeatherInfo}
+              lineThroughable={false}
+              onClick={() =>
+                dispatch(appActions.toggleConfig({ key: "showWeatherInfo" }))
+              }
+              icon={<CloudSun className="w-4 h-4" />}
+            />
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
     </div>
   );
 };
