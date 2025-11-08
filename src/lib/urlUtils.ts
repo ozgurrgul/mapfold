@@ -1,5 +1,10 @@
 import { MapPosition, SupportedMapProvider } from "@/types/map";
-import { Configs, URLParams, WaybackDate } from "@/types/types";
+import {
+  Configs,
+  URLParams,
+  WaybackDate,
+  MeasurementData,
+} from "@/types/types";
 
 export const parseURLParams = (): URLParams => {
   const params = new URLSearchParams(window.location.search);
@@ -7,6 +12,7 @@ export const parseURLParams = (): URLParams => {
   const configsParam = params.get("configs");
   const enabledProvidersParam = params.get("enabledProviders");
   const esriSatTimelineDateParam = params.get("esriSatTimelineDate");
+  const measurementsParam = params.get("measurements");
 
   const result: URLParams = {};
 
@@ -58,6 +64,18 @@ export const parseURLParams = (): URLParams => {
     }
   }
 
+  // Parse measurements from JSON
+  if (measurementsParam) {
+    try {
+      const measurements = JSON.parse(decodeURIComponent(measurementsParam));
+      if (Array.isArray(measurements)) {
+        result.measurements = measurements;
+      }
+    } catch (error) {
+      console.warn("Failed to parse measurements from URL:", error);
+    }
+  }
+
   return result;
 };
 
@@ -65,7 +83,8 @@ export const updateURL = (
   position: MapPosition,
   configs?: Configs,
   enabledProviders?: SupportedMapProvider[],
-  selectedEsriSatTimelineDate?: WaybackDate
+  selectedEsriSatTimelineDate?: WaybackDate,
+  measurements?: MeasurementData[]
 ) => {
   const params = new URLSearchParams();
 
@@ -87,6 +106,14 @@ export const updateURL = (
     params.set(
       "esriSatTimelineDate",
       encodeURIComponent(JSON.stringify(selectedEsriSatTimelineDate))
+    );
+  }
+
+  // Add measurements as JSON if provided
+  if (measurements && measurements.length > 0) {
+    params.set(
+      "measurements",
+      encodeURIComponent(JSON.stringify(measurements))
     );
   }
 

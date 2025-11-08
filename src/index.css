@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Measurement label styles */
+.measurement-label {
+  background: transparent !important;
+  border: none !important;
+}
+
+.measurement-label div {
+  background: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+}
+
 .leaflet-container {
   width: 100%;
   height: 100%;

@@ -5,6 +5,7 @@ import {
   selectConfigs,
   selectEnabledProviders,
   selectSelectedEsriSatTimelineDate,
+  selectMeasurements,
 } from "./appSelectors";
 import { parseURLParams, updateURL } from "@/lib/urlUtils";
 import { DEFAULT_MAP_POSITION } from "./appConstants";
@@ -60,6 +61,11 @@ function* handleInitializeFromURL() {
         appActions.setEsriSatTimelineDate(urlParams.esriSatTimelineDate)
       );
     }
+
+    // Set measurements if provided
+    if (urlParams.measurements) {
+      yield put(appActions.setMeasurements(urlParams.measurements));
+    }
   } catch (error) {
     console.error("Error parsing URL parameters:", error);
   }
@@ -78,13 +84,17 @@ function* handleUpdateURL() {
     const selectedEsriSatTimelineDate: ReturnType<
       typeof selectSelectedEsriSatTimelineDate
     > = yield select(selectSelectedEsriSatTimelineDate);
+    const measurements: ReturnType<typeof selectMeasurements> = yield select(
+      selectMeasurements
+    );
 
     if (currentPosition) {
       updateURL(
         currentPosition,
         currentConfigs,
         enabledProviders,
-        selectedEsriSatTimelineDate
+        selectedEsriSatTimelineDate,
+        measurements
       );
     }
   } catch (error) {
@@ -98,4 +108,8 @@ export function* appSaga() {
   yield takeLatest(appActions.toggleConfig, handleUpdateURL);
   yield takeLatest(appActions.toggleMapEnabled, handleUpdateURL);
   yield takeLatest(appActions.setEsriSatTimelineDate, handleUpdateURL);
+  yield takeLatest(appActions.addMeasurement, handleUpdateURL);
+  yield takeLatest(appActions.removeMeasurement, handleUpdateURL);
+  yield takeLatest(appActions.clearMeasurements, handleUpdateURL);
+  yield takeLatest(appActions.setMeasurements, handleUpdateURL);
 }

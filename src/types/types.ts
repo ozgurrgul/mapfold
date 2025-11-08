@@ -16,9 +16,23 @@ export interface WaybackDate {
   tileUrl: string; // Actual tile URL from ESRI config
 }
 
+export interface MeasurementPoint {
+  lat: number;
+  lng: number;
+}
+
+export interface MeasurementData {
+  id: string;
+  points: MeasurementPoint[];
+  distance: number; // in meters
+  unit: string;
+  created: number; // timestamp
+}
+
 export interface URLParams {
   mapPosition?: Partial<MapPosition>;
   configs?: Partial<Configs>;
   enabledProviders?: SupportedMapProvider[];
   esriSatTimelineDate?: WaybackDate;
+  measurements?: MeasurementData[];
 }

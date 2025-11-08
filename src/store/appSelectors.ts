@@ -24,7 +24,7 @@ export const selectConfigs = createSelector(
 
 export const selectEnabledProviders = createSelector(
   selectEnabledMapList,
-  (enabledMaps) => enabledMaps.map(map => map.provider)
+  (enabledMaps) => enabledMaps.map((map) => map.provider)
 );
 
 export const selectFullscreenProvider = createSelector(
@@ -35,4 +35,9 @@ export const selectFullscreenProvider = createSelector(
 export const selectSelectedEsriSatTimelineDate = createSelector(
   selectAppState,
   (state) => state.selectedEsriSatTimelineDate
+);
+
+export const selectMeasurements = createSelector(
+  selectAppState,
+  (state) => state.measurements
 );

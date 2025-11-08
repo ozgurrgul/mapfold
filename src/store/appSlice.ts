@@ -1,7 +1,7 @@
 import { MapPosition, SupportedMapProvider } from "@/types/map";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DEFAULT_MAP_POSITION } from "./appConstants";
-import { Configs, WaybackDate } from "@/types/types";
+import { Configs, WaybackDate, MeasurementData } from "@/types/types";
 
 interface State {
   mapPosition?: MapPosition;
@@ -13,6 +13,7 @@ interface State {
   }[];
   fullscreenProvider?: SupportedMapProvider;
   selectedEsriSatTimelineDate?: WaybackDate;
+  measurements: MeasurementData[];
 }
 
 const initialState: State = {
@@ -26,6 +27,7 @@ const initialState: State = {
   },
   fullscreenProvider: undefined,
   selectedEsriSatTimelineDate: undefined,
+  measurements: [],
   mapList: [
     {
       provider: "googleSat",
@@ -120,8 +122,25 @@ const appSlice = createSlice({
           ? undefined
           : action.payload;
     },
-    setEsriSatTimelineDate(state, action: PayloadAction<WaybackDate | undefined>) {
+    setEsriSatTimelineDate(
+      state,
+      action: PayloadAction<WaybackDate | undefined>
+    ) {
       state.selectedEsriSatTimelineDate = action.payload;
+    },
+    addMeasurement(state, action: PayloadAction<MeasurementData>) {
+      state.measurements.push(action.payload);
+    },
+    removeMeasurement(state, action: PayloadAction<string>) {
+      state.measurements = state.measurements.filter(
+        (m) => m.id !== action.payload
+      );
+    },
+    clearMeasurements(state) {
+      state.measurements = [];
+    },
+    setMeasurements(state, action: PayloadAction<MeasurementData[]>) {
+      state.measurements = action.payload;
     },
   },
 });
