@@ -9,6 +9,11 @@ export interface Configs {
   showWeatherInfo: boolean;
 }
 
+export interface NasaGibsConfig {
+  layer: string;
+  date: string;
+}
+
 export interface WaybackDate {
   releaseNum: number;
   releaseDateLabel: string;

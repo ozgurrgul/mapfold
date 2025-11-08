@@ -4,6 +4,7 @@ import { BingMap } from "./BingMap";
 import { GoogleStreetView } from "./StreetView";
 import { AmazonMiningWatchTiles } from "./AmazonMiningWatchTiles";
 import { EsriWaybackMap } from "./EsriWaybackMap";
+import { NasaGibsMap } from "./NasaGibsMap";
 
 const maps: Record<SupportedMapProvider, React.ReactNode> = {
   googleSat: (
@@ -70,6 +71,7 @@ const maps: Record<SupportedMapProvider, React.ReactNode> = {
       maxZoom={50}
     />
   ),
+  nasaGibs: <NasaGibsMap />,
 };
 
 export const MapRenderer: React.FC<{ provider: SupportedMapProvider }> = ({

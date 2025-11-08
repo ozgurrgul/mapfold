@@ -41,3 +41,8 @@ export const selectMeasurements = createSelector(
   selectAppState,
   (state) => state.measurements
 );
+
+export const selectNasaGibsConfig = createSelector(
+  selectAppState,
+  (state) => state.nasaGibsConfig
+);

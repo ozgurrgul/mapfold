@@ -16,4 +16,5 @@ export type SupportedMapProvider =
   | "amazonMiningWatch"
   | "topography"
   | "airports"
-  | "railways";
+  | "railways"
+  | "nasaGibs";
