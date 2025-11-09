@@ -82,6 +82,17 @@ export const InterfaceConfigs = () => {
               }
               icon={<Waves className="w-4 h-4" />}
             />
+            <ConfigRow
+              title="Street View"
+              enabled={configs.showGoogleStreetView}
+              lineThroughable={false}
+              onClick={() =>
+                dispatch(
+                  appActions.toggleConfig({ key: "showGoogleStreetView" })
+                )
+              }
+              icon={<Navigation className="w-4 h-4" />}
+            />
           </div>
         </CollapsibleContent>
       </Collapsible>
@@ -101,17 +112,6 @@ export const InterfaceConfigs = () => {
         </CollapsibleTrigger>
         <CollapsibleContent>
           <div className="mt-2 rounded-md overflow-hidden border">
-            <ConfigRow
-              title="Street View"
-              enabled={configs.showGoogleStreetView}
-              lineThroughable={false}
-              onClick={() =>
-                dispatch(
-                  appActions.toggleConfig({ key: "showGoogleStreetView" })
-                )
-              }
-              icon={<Navigation className="w-4 h-4" />}
-            />
             <ConfigRow
               title="Measure Tool"
               enabled={configs.showMeasureControl}
