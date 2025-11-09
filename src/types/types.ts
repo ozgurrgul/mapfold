@@ -7,6 +7,7 @@ export interface Configs {
   showRailways: boolean;
   showMeasureControl: boolean;
   showWeatherInfo: boolean;
+  showEarthquakes: boolean;
 }
 
 export interface NasaGibsConfig {
@@ -32,6 +33,22 @@ export interface MeasurementData {
   distance: number; // in meters
   unit: string;
   created: number; // timestamp
+}
+
+export interface EarthquakeFeature {
+  id: string;
+  properties: {
+    mag: number;
+    place: string;
+    time: number;
+    updated: number;
+    url: string;
+    detail: string;
+    title: string;
+  };
+  geometry: {
+    coordinates: [number, number, number]; // [longitude, latitude, depth]
+  };
 }
 
 export interface URLParams {

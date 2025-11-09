@@ -1,7 +1,12 @@
 import { MapPosition, SupportedMapProvider } from "@/types/map";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { DEFAULT_MAP_POSITION } from "./appConstants";
-import { Configs, WaybackDate, MeasurementData, NasaGibsConfig } from "@/types/types";
+import {
+  Configs,
+  WaybackDate,
+  MeasurementData,
+  NasaGibsConfig,
+} from "@/types/types";
 import { getYesterdayDate } from "@/lib/dateUtils";
 
 interface State {
@@ -26,6 +31,7 @@ const initialState: State = {
     showRailways: false,
     showMeasureControl: false,
     showWeatherInfo: false,
+    showEarthquakes: false,
   },
   fullscreenProvider: undefined,
   selectedEsriSatTimelineDate: undefined,

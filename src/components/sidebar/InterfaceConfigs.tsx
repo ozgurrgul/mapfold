@@ -11,6 +11,7 @@ import {
   CloudSun,
   Layers,
   Wrench,
+  Waves,
 } from "lucide-react";
 import {
   Collapsible,
@@ -71,6 +72,15 @@ export const InterfaceConfigs = () => {
                 )
               }
               icon={<TentIcon className="w-4 h-4" />}
+            />
+            <ConfigRow
+              title="Earthquakes (24h, M4.0+)"
+              enabled={configs.showEarthquakes}
+              lineThroughable={false}
+              onClick={() =>
+                dispatch(appActions.toggleConfig({ key: "showEarthquakes" }))
+              }
+              icon={<Waves className="w-4 h-4" />}
             />
           </div>
         </CollapsibleContent>
