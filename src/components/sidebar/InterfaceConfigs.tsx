@@ -12,7 +12,6 @@ import {
   Layers,
   Wrench,
   Waves,
-  BookmarkIcon,
 } from "lucide-react";
 import {
   Collapsible,
@@ -44,7 +43,7 @@ export const InterfaceConfigs = () => {
           />
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <div className="mt-2 rounded-md overflow-hidden border">
+          <div className="mt-2 overflow-hidden">
             <ConfigRow
               title="Roads"
               enabled={configs.showRoads}
@@ -107,7 +106,7 @@ export const InterfaceConfigs = () => {
           />
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <div className="mt-2 rounded-md overflow-hidden border">
+          <div className="mt-2 overflow-hidden">
             <ConfigRow
               title="Measure Tool"
               enabled={configs.showMeasureControl}

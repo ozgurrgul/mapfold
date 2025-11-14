@@ -27,7 +27,7 @@ export const MapList = () => {
   return (
     <div>
       <div>Maps</div>
-      <div className="mt-2 rounded-md overflow-hidden border border-gray-100">
+      <div className="mt-2 overflow-hidden">
         {mapList.map((m) => (
           <ConfigRow
             key={m.provider}
