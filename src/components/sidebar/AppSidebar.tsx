@@ -1,6 +1,7 @@
 import { PositionInput } from "./PositionInput";
 import { MapList } from "./MapList";
 import { InterfaceConfigs } from "./InterfaceConfigs";
+import { BookmarkList } from "./BookmarkList";
 import { cn } from "@/lib/utils";
 
 interface AppSidebarProps {
@@ -18,6 +19,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ withShadow }) => {
       <PositionInput />
       <MapList />
       <InterfaceConfigs />
+      <BookmarkList />
     </div>
   );
 };

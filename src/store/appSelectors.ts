@@ -46,3 +46,8 @@ export const selectNasaGibsConfig = createSelector(
   selectAppState,
   (state) => state.nasaGibsConfig
 );
+
+export const selectBookmarks = createSelector(
+  selectAppState,
+  (state) => state.bookmarks
+);

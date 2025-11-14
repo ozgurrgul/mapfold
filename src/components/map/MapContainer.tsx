@@ -8,6 +8,8 @@ import { DEFAULT_MAP_POSITION } from "@/store/appConstants";
 import { IndigenousTerritoriesOverlay } from "./IndigenousTerritoriesOverlay";
 import { MeasureControl } from "./MeasureControl";
 import { EarthquakeOverlay } from "./EarthquakeOverlay";
+import { BookmarkMarkers } from "./BookmarkMarkers";
+import { BookmarkClickHandler } from "./BookmarkClickHandler";
 
 interface Props extends React.PropsWithChildren {
   position?: MapPosition;
@@ -87,6 +89,9 @@ export const MapContainer: React.FC<Props> = ({
       {configs.showIndigenousTerritories && <IndigenousTerritoriesOverlay />}
       {configs.showEarthquakes && <EarthquakeOverlay />}
       {configs.showMeasureControl && <MeasureControl />}
+      <BookmarkMarkers />
+      {/* Show bookmark click handler only if measure control is not enabled */}
+      {!configs.showMeasureControl && <BookmarkClickHandler />}
     </LeafletMapContainer>
   );
 };

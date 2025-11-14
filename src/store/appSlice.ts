@@ -6,6 +6,7 @@ import {
   WaybackDate,
   MeasurementData,
   NasaGibsConfig,
+  Bookmark,
 } from "@/types/types";
 import { getYesterdayDate } from "@/lib/dateUtils";
 
@@ -21,7 +22,27 @@ interface State {
   selectedEsriSatTimelineDate?: WaybackDate;
   measurements: MeasurementData[];
   nasaGibsConfig: NasaGibsConfig;
+  bookmarks: Bookmark[];
 }
+
+// Load bookmarks from localStorage
+const loadBookmarksFromStorage = (): Bookmark[] => {
+  try {
+    const stored = localStorage.getItem("mapfold_bookmarks");
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
+// Save bookmarks to localStorage
+const saveBookmarksToStorage = (bookmarks: Bookmark[]) => {
+  try {
+    localStorage.setItem("mapfold_bookmarks", JSON.stringify(bookmarks));
+  } catch {
+    // Silently fail if localStorage is not available
+  }
+};
 
 const initialState: State = {
   configs: {
@@ -40,6 +61,7 @@ const initialState: State = {
     layer: "MODIS_Terra_CorrectedReflectance_TrueColor",
     date: getYesterdayDate(),
   },
+  bookmarks: loadBookmarksFromStorage(),
   mapList: [
     {
       provider: "googleSat",
@@ -167,6 +189,25 @@ const appSlice = createSlice({
     },
     setNasaGibsConfig(state, action: PayloadAction<NasaGibsConfig>) {
       state.nasaGibsConfig = action.payload;
+    },
+    addBookmark(state, action: PayloadAction<Bookmark>) {
+      state.bookmarks.push(action.payload);
+      saveBookmarksToStorage(state.bookmarks);
+    },
+    removeBookmark(state, action: PayloadAction<string>) {
+      state.bookmarks = state.bookmarks.filter((b) => b.id !== action.payload);
+      saveBookmarksToStorage(state.bookmarks);
+    },
+    updateBookmark(state, action: PayloadAction<Bookmark>) {
+      const index = state.bookmarks.findIndex((b) => b.id === action.payload.id);
+      if (index !== -1) {
+        state.bookmarks[index] = action.payload;
+        saveBookmarksToStorage(state.bookmarks);
+      }
+    },
+    clearBookmarks(state) {
+      state.bookmarks = [];
+      saveBookmarksToStorage(state.bookmarks);
     },
   },
 });

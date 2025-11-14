@@ -51,6 +51,14 @@ export interface EarthquakeFeature {
   };
 }
 
+export interface Bookmark {
+  id: string;
+  name: string;
+  lat: number;
+  lng: number;
+  created: number; // timestamp
+}
+
 export interface URLParams {
   mapPosition?: Partial<MapPosition>;
   configs?: Partial<Configs>;

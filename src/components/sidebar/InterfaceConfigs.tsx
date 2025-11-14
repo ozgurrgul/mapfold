@@ -12,6 +12,7 @@ import {
   Layers,
   Wrench,
   Waves,
+  BookmarkIcon,
 } from "lucide-react";
 import {
   Collapsible,
