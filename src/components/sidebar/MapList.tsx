@@ -33,7 +33,6 @@ export const MapList = () => {
             key={m.provider}
             title={m.providerName}
             enabled={m.enabled}
-            lineThroughable
             onClick={() => onToggleMapEnabled(m.provider)}
             icon={<MapIcon className="w-4 h-4" />}
           />

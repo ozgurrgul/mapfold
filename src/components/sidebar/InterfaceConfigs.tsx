@@ -47,7 +47,6 @@ export const InterfaceConfigs = () => {
             <ConfigRow
               title="Roads"
               enabled={configs.showRoads}
-              lineThroughable={false}
               onClick={() =>
                 dispatch(appActions.toggleConfig({ key: "showRoads" }))
               }
@@ -56,7 +55,6 @@ export const InterfaceConfigs = () => {
             <ConfigRow
               title="Railways"
               enabled={configs.showRailways}
-              lineThroughable={false}
               onClick={() =>
                 dispatch(appActions.toggleConfig({ key: "showRailways" }))
               }
@@ -65,7 +63,6 @@ export const InterfaceConfigs = () => {
             <ConfigRow
               title="Indigenous Territories"
               enabled={configs.showIndigenousTerritories}
-              lineThroughable={false}
               onClick={() =>
                 dispatch(
                   appActions.toggleConfig({ key: "showIndigenousTerritories" })
@@ -76,7 +73,6 @@ export const InterfaceConfigs = () => {
             <ConfigRow
               title="Earthquakes (24h, M4.0+)"
               enabled={configs.showEarthquakes}
-              lineThroughable={false}
               onClick={() =>
                 dispatch(appActions.toggleConfig({ key: "showEarthquakes" }))
               }
@@ -85,7 +81,6 @@ export const InterfaceConfigs = () => {
             <ConfigRow
               title="Street View"
               enabled={configs.showGoogleStreetView}
-              lineThroughable={false}
               onClick={() =>
                 dispatch(
                   appActions.toggleConfig({ key: "showGoogleStreetView" })
@@ -115,7 +110,6 @@ export const InterfaceConfigs = () => {
             <ConfigRow
               title="Measure Tool"
               enabled={configs.showMeasureControl}
-              lineThroughable={false}
               onClick={() =>
                 dispatch(appActions.toggleConfig({ key: "showMeasureControl" }))
               }
@@ -124,7 +118,6 @@ export const InterfaceConfigs = () => {
             <ConfigRow
               title="Weather Info"
               enabled={configs.showWeatherInfo}
-              lineThroughable={false}
               onClick={() =>
                 dispatch(appActions.toggleConfig({ key: "showWeatherInfo" }))
               }
