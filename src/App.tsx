@@ -17,6 +17,7 @@ import { FullscreenToggle } from "./components/ui/fullscreen-toggle";
 import { WeatherInfo } from "./components/weather/WeatherInfo";
 import { useKeyboardShortcuts } from "./hooks/use-keyboard-shortcuts";
 import { MenuIcon, XIcon } from "lucide-react";
+import { useIsMobile } from "./hooks/use-mobile";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,33 +59,47 @@ function App() {
 
   const canShowSidebarIcon = !fullscreenProvider;
 
-  return (
-    <div className="relative">
-      {canShowSidebarIcon && (
-        <div className="absolute top-4 right-4 z-[9999] w-[250px]">
-          <div className="flex justify-end">
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="bg-white rounded-md p-2 mb-2"
-            >
-              {sidebarOpen ? (
-                <XIcon className="w-4 h-4" />
-              ) : (
-                <MenuIcon className="w-4 h-4" />
-              )}
-            </button>
-          </div>
-          <div 
-            className={`transition-all duration-300 ease-out origin-top-right ${
-              sidebarOpen 
-                ? 'transform scale-100 opacity-100' 
-                : 'transform scale-0 opacity-0 pointer-events-none'
-            }`}
+  const mobileSidebar = () => {
+    return (
+      <div className="absolute top-4 right-4 z-[9999] w-[250px]">
+        <div className="flex justify-end">
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="bg-white rounded-md p-2 mb-2"
           >
-            <AppSidebar />
-          </div>
+            {sidebarOpen ? (
+              <XIcon className="w-4 h-4" />
+            ) : (
+              <MenuIcon className="w-4 h-4" />
+            )}
+          </button>
         </div>
-      )}
+        <div
+          className={`transition-all duration-300 ease-out origin-top-right ${
+            sidebarOpen
+              ? "transform scale-100 opacity-100"
+              : "transform scale-0 opacity-0 pointer-events-none"
+          }`}
+        >
+          <AppSidebar withShadow={true} />
+        </div>
+      </div>
+    );
+  };
+
+  const desktopSidebar = () => {
+    return (
+      <div className="w-[320px]">
+        <AppSidebar withShadow={false} />
+      </div>
+    );
+  };
+
+  const isMobile = useIsMobile();
+
+  return (
+    <div className={isMobile ? "relative" : "flex"}>
+      {canShowSidebarIcon && (isMobile ? mobileSidebar() : desktopSidebar())}
       <MapsGrid>
         {mapList
           .filter(
@@ -113,8 +128,8 @@ function App() {
                   }
                 />
                 {configs.showWeatherInfo && (
-                  <WeatherInfo 
-                    position={position} 
+                  <WeatherInfo
+                    position={position}
                     className="absolute top-24 left-4 max-w-[200px]"
                   />
                 )}
